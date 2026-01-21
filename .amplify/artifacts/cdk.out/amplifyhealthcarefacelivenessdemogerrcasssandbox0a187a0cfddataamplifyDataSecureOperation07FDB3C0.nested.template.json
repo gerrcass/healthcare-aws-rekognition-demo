@@ -1,0 +1,2080 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource57388533Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataC1614937": {
+   "Type": "String"
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "SecureOperationTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource57388533Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataC1614937"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "SecureOperation-",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SecureOperationTable/Default/Default"
+   }
+  },
+  "SecureOperationIAMRole0B2B6F57": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "SecureOperation-",
+                {
+                 "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "SecureOperation-",
+                {
+                 "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "SecureOperationIAMRoe03c2e-",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SecureOperationIAMRole/Resource"
+   }
+  },
+  "SecureOperationDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "SecureOperationTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "SecureOperationTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "SecureOperationIAMRole0B2B6F57",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "SecureOperationIAMRole0B2B6F57"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SecureOperationDataSource/Resource"
+   }
+  },
+  "QuerygetSecureOperationauth0FunctionQuerygetSecureOperationauth0FunctionAppSyncFunction193CBDC1": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/88d5b7081b0dc9c39fd0bffedf56f011b2a7cf1ce5cc227f47a1e94efee8067c.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QuerygetSecureOperationauth0Function/QuerygetSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetSecureOperationpostAuth0FunctionQuerygetSecureOperationpostAuth0FunctionAppSyncFunction1E7F981D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QuerygetSecureOperationpostAuth0Function/QuerygetSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetSecureOperationDataResolverFnQueryGetSecureOperationDataResolverFnAppSyncFunction9D402974": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QueryGetSecureOperationDataResolverFn/QueryGetSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "getSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetSecureOperationauth0FunctionQuerygetSecureOperationauth0FunctionAppSyncFunction193CBDC1",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetSecureOperationpostAuth0FunctionQuerygetSecureOperationpostAuth0FunctionAppSyncFunction1E7F981D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetSecureOperationDataResolverFnQueryGetSecureOperationDataResolverFnAppSyncFunction9D402974",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "SecureOperationTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/queryGetSecureOperationResolver"
+   }
+  },
+  "QuerylistSecureOperationsauth0FunctionQuerylistSecureOperationsauth0FunctionAppSyncFunctionE19DE2B9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistSecureOperationsauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/88d5b7081b0dc9c39fd0bffedf56f011b2a7cf1ce5cc227f47a1e94efee8067c.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QuerylistSecureOperationsauth0Function/QuerylistSecureOperationsauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistSecureOperationspostAuth0FunctionQuerylistSecureOperationspostAuth0FunctionAppSyncFunction65AD9B06": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistSecureOperationspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QuerylistSecureOperationspostAuth0Function/QuerylistSecureOperationspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListSecureOperationsDataResolverFnQueryListSecureOperationsDataResolverFnAppSyncFunction7F32E0FC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListSecureOperationsDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/QueryListSecureOperationsDataResolverFn/QueryListSecureOperationsDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "listSecureOperations",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistSecureOperationsauth0FunctionQuerylistSecureOperationsauth0FunctionAppSyncFunctionE19DE2B9",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistSecureOperationspostAuth0FunctionQuerylistSecureOperationspostAuth0FunctionAppSyncFunction65AD9B06",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListSecureOperationsDataResolverFnQueryListSecureOperationsDataResolverFnAppSyncFunction7F32E0FC",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listSecureOperations\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "SecureOperationTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/queryListSecureOperationsResolver"
+   }
+  },
+  "MutationcreateSecureOperationinit0FunctionMutationcreateSecureOperationinit0FunctionAppSyncFunctionFE568A64": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateSecureOperationinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationcreateSecureOperationinit0Function/MutationcreateSecureOperationinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateSecureOperationauth0FunctionMutationcreateSecureOperationauth0FunctionAppSyncFunctionA45B5D43": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b371d68ddfbdd11b176756ce33b2c4e79d26fcc2fd4b7c0c9e75d06efacee90e.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationcreateSecureOperationauth0Function/MutationcreateSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateSecureOperationpostAuth0FunctionMutationcreateSecureOperationpostAuth0FunctionAppSyncFunctionA1ED83CC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationcreateSecureOperationpostAuth0Function/MutationcreateSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateSecureOperationDataResolverFnMutationCreateSecureOperationDataResolverFnAppSyncFunctionCD17B21D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4b9eb0ada3db64f11f66bd9c931edaf4064e5dc9cedc22f795ec2b6b89d5413e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationCreateSecureOperationDataResolverFn/MutationCreateSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "createSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateSecureOperationinit0FunctionMutationcreateSecureOperationinit0FunctionAppSyncFunctionFE568A64",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateSecureOperationauth0FunctionMutationcreateSecureOperationauth0FunctionAppSyncFunctionA45B5D43",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateSecureOperationpostAuth0FunctionMutationcreateSecureOperationpostAuth0FunctionAppSyncFunctionA1ED83CC",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateSecureOperationDataResolverFnMutationCreateSecureOperationDataResolverFnAppSyncFunctionCD17B21D",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "SecureOperationTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/mutationCreateSecureOperationResolver"
+   }
+  },
+  "MutationupdateSecureOperationinit0FunctionMutationupdateSecureOperationinit0FunctionAppSyncFunction488E2B0A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateSecureOperationinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationupdateSecureOperationinit0Function/MutationupdateSecureOperationinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateSecureOperationauth0FunctionMutationupdateSecureOperationauth0FunctionAppSyncFunction51CAF7A7": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/245ed8ac5185462a6923b7e45a318fec4c9ba0c45d1d720abd5b20317aa3dc6a.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationupdateSecureOperationauth0Function/MutationupdateSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateSecureOperationpostAuth0FunctionMutationupdateSecureOperationpostAuth0FunctionAppSyncFunctionA6A5AA42": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationupdateSecureOperationpostAuth0Function/MutationupdateSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateSecureOperationDataResolverFnMutationUpdateSecureOperationDataResolverFnAppSyncFunction32D6C522": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationUpdateSecureOperationDataResolverFn/MutationUpdateSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "updateSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateSecureOperationinit0FunctionMutationupdateSecureOperationinit0FunctionAppSyncFunction488E2B0A",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateSecureOperationauth0FunctionMutationupdateSecureOperationauth0FunctionAppSyncFunction51CAF7A7",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateSecureOperationpostAuth0FunctionMutationupdateSecureOperationpostAuth0FunctionAppSyncFunctionA6A5AA42",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateSecureOperationDataResolverFnMutationUpdateSecureOperationDataResolverFnAppSyncFunction32D6C522",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "SecureOperationTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/mutationUpdateSecureOperationResolver"
+   }
+  },
+  "MutationdeleteSecureOperationauth0FunctionMutationdeleteSecureOperationauth0FunctionAppSyncFunction555B44B6": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/29e4bdb03133f87f2b1acb547959ffd4cfd22804026994c5b61db33084127353.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationdeleteSecureOperationauth0Function/MutationdeleteSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteSecureOperationpostAuth0FunctionMutationdeleteSecureOperationpostAuth0FunctionAppSyncFunctionD86689A3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationdeleteSecureOperationpostAuth0Function/MutationdeleteSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteSecureOperationDataResolverFnMutationDeleteSecureOperationDataResolverFnAppSyncFunction6E4F0066": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "SecureOperationDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "SecureOperationDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/MutationDeleteSecureOperationDataResolverFn/MutationDeleteSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "deleteSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteSecureOperationauth0FunctionMutationdeleteSecureOperationauth0FunctionAppSyncFunction555B44B6",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteSecureOperationpostAuth0FunctionMutationdeleteSecureOperationpostAuth0FunctionAppSyncFunctionD86689A3",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteSecureOperationDataResolverFnMutationDeleteSecureOperationDataResolverFnAppSyncFunction6E4F0066",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "SecureOperationTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/mutationDeleteSecureOperationResolver"
+   }
+  },
+  "SubscriptiononCreateSecureOperationauth0FunctionSubscriptiononCreateSecureOperationauth0FunctionAppSyncFunction4EE20AC8": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6f3a2a9d562ae3058cc1aed6741edbf5edcaef7b3df7b03f52478816a1c95ffb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononCreateSecureOperationauth0Function/SubscriptiononCreateSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateSecureOperationpostAuth0FunctionSubscriptiononCreateSecureOperationpostAuth0FunctionAppSyncFunction33184913": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononCreateSecureOperationpostAuth0Function/SubscriptiononCreateSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateSecureOperationDataResolverFnSubscriptionOnCreateSecureOperationDataResolverFnAppSyncFunction0DDEF882": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptionOnCreateSecureOperationDataResolverFn/SubscriptionOnCreateSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "onCreateSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateSecureOperationauth0FunctionSubscriptiononCreateSecureOperationauth0FunctionAppSyncFunction4EE20AC8",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateSecureOperationpostAuth0FunctionSubscriptiononCreateSecureOperationpostAuth0FunctionAppSyncFunction33184913",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateSecureOperationDataResolverFnSubscriptionOnCreateSecureOperationDataResolverFnAppSyncFunction0DDEF882",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/subscriptionOnCreateSecureOperationResolver"
+   }
+  },
+  "SubscriptiononUpdateSecureOperationauth0FunctionSubscriptiononUpdateSecureOperationauth0FunctionAppSyncFunction2E8959DA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6f3a2a9d562ae3058cc1aed6741edbf5edcaef7b3df7b03f52478816a1c95ffb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononUpdateSecureOperationauth0Function/SubscriptiononUpdateSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateSecureOperationpostAuth0FunctionSubscriptiononUpdateSecureOperationpostAuth0FunctionAppSyncFunction3F51F66E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononUpdateSecureOperationpostAuth0Function/SubscriptiononUpdateSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateSecureOperationDataResolverFnSubscriptionOnUpdateSecureOperationDataResolverFnAppSyncFunction4819B1DE": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptionOnUpdateSecureOperationDataResolverFn/SubscriptionOnUpdateSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "onUpdateSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateSecureOperationauth0FunctionSubscriptiononUpdateSecureOperationauth0FunctionAppSyncFunction2E8959DA",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateSecureOperationpostAuth0FunctionSubscriptiononUpdateSecureOperationpostAuth0FunctionAppSyncFunction3F51F66E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateSecureOperationDataResolverFnSubscriptionOnUpdateSecureOperationDataResolverFnAppSyncFunction4819B1DE",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/subscriptionOnUpdateSecureOperationResolver"
+   }
+  },
+  "SubscriptiononDeleteSecureOperationauth0FunctionSubscriptiononDeleteSecureOperationauth0FunctionAppSyncFunction0B575383": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteSecureOperationauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6f3a2a9d562ae3058cc1aed6741edbf5edcaef7b3df7b03f52478816a1c95ffb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononDeleteSecureOperationauth0Function/SubscriptiononDeleteSecureOperationauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteSecureOperationpostAuth0FunctionSubscriptiononDeleteSecureOperationpostAuth0FunctionAppSyncFunction2D0103F6": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteSecureOperationpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptiononDeleteSecureOperationpostAuth0Function/SubscriptiononDeleteSecureOperationpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteSecureOperationDataResolverFnSubscriptionOnDeleteSecureOperationDataResolverFnAppSyncFunction28C9AC47": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPINONEDSA9C67D23Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteSecureOperationDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/SubscriptionOnDeleteSecureOperationDataResolverFn/SubscriptionOnDeleteSecureOperationDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteSecureOperationResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+    },
+    "FieldName": "onDeleteSecureOperation",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteSecureOperationauth0FunctionSubscriptiononDeleteSecureOperationauth0FunctionAppSyncFunction0B575383",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteSecureOperationpostAuth0FunctionSubscriptiononDeleteSecureOperationpostAuth0FunctionAppSyncFunction2D0103F6",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteSecureOperationDataResolverFnSubscriptionOnDeleteSecureOperationDataResolverFnAppSyncFunction28C9AC47",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteSecureOperation\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthauthenticatedUserRole6DE3C8C5Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthunauthenticatedUserRole7EC1E4E2Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthNestedStackauthNestedStackResourceDC3C3692Outputsamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfdauthamplifyAuthIdentityPool8DFBCAE1Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/subscriptionOnDeleteSecureOperationResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQQU/DMAyFfwv31KgbBziyVhwBddwnN3GrrG1Sxc7QVPW/k3RoiNPzJz/Zz97Bbv8E5QN+c6HNUIy2heWdWMgcBfWgqs59YsCJhEKGyjtjxXqnGmIfgyZVRRY//WHn7nUae1rM1eHkTQtf2I50QCZlcYKl8ePNnXRVOM98dRqWerPXbY2Cx/vI//QWnc4hUprO9jHgluh383ihsCren5CZhOE1S2I4RD2Q5ABr9n5EmaOorZ2O7a3rV+W8ITjz46V8hvIlfebM1hYhOrETQXPTHxy3KiE2AQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/data/amplifyData/SecureOperation/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttSecureOperationTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "SecureOperationTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "GetAtt:SecureOperationTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttSecureOperationTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "SecureOperation-",
+      {
+       "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyhealthcarefacelivenessdemogerrcasssandbox0a187a0cfddataamplifyDataGraphQLAPI50DD3026ApiId"
+       },
+       "GetAtt:SecureOperationTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

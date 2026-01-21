@@ -1,0 +1,467 @@
+type Patient @aws_iam @aws_cognito_user_pools {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  medicalRecordNumber: String!
+  department: String!
+  assignedDoctor: String
+  lastVisit: String!
+  securityLevel: PatientSecurityLevel
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type SecureOperation @aws_iam @aws_cognito_user_pools {
+  name: String!
+  description: String!
+  category: SecureOperationCategory
+  requiredRole: String!
+  requiresFaceLiveness: Boolean!
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type AuditLog @aws_iam @aws_cognito_user_pools {
+  userId: String!
+  operation: String!
+  timestamp: AWSDateTime!
+  success: Boolean!
+  faceLivenessVerified: Boolean
+  details: String
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum PatientSecurityLevel {
+  standard
+  sensitive
+}
+
+enum SecureOperationCategory {
+  prescription
+  diagnosis
+  procedure
+  records
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelPatientConnection @aws_iam @aws_cognito_user_pools {
+  items: [Patient]!
+  nextToken: String
+}
+
+input ModelPatientSecurityLevelInput {
+  eq: PatientSecurityLevel
+  ne: PatientSecurityLevel
+}
+
+input ModelPatientFilterInput {
+  firstName: ModelStringInput
+  lastName: ModelStringInput
+  dateOfBirth: ModelStringInput
+  medicalRecordNumber: ModelStringInput
+  department: ModelStringInput
+  assignedDoctor: ModelStringInput
+  lastVisit: ModelStringInput
+  securityLevel: ModelPatientSecurityLevelInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelPatientFilterInput]
+  or: [ModelPatientFilterInput]
+  not: ModelPatientFilterInput
+}
+
+type Query {
+  getPatient(id: ID!): Patient @aws_iam @aws_cognito_user_pools
+  listPatients(filter: ModelPatientFilterInput, limit: Int, nextToken: String): ModelPatientConnection @aws_iam @aws_cognito_user_pools
+  getSecureOperation(id: ID!): SecureOperation @aws_iam @aws_cognito_user_pools
+  listSecureOperations(filter: ModelSecureOperationFilterInput, limit: Int, nextToken: String): ModelSecureOperationConnection @aws_iam @aws_cognito_user_pools
+  getAuditLog(id: ID!): AuditLog @aws_iam @aws_cognito_user_pools
+  listAuditLogs(filter: ModelAuditLogFilterInput, limit: Int, nextToken: String): ModelAuditLogConnection @aws_iam @aws_cognito_user_pools
+}
+
+input ModelPatientConditionInput {
+  firstName: ModelStringInput
+  lastName: ModelStringInput
+  dateOfBirth: ModelStringInput
+  medicalRecordNumber: ModelStringInput
+  department: ModelStringInput
+  assignedDoctor: ModelStringInput
+  lastVisit: ModelStringInput
+  securityLevel: ModelPatientSecurityLevelInput
+  and: [ModelPatientConditionInput]
+  or: [ModelPatientConditionInput]
+  not: ModelPatientConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreatePatientInput {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  medicalRecordNumber: String!
+  department: String!
+  assignedDoctor: String
+  lastVisit: String!
+  securityLevel: PatientSecurityLevel
+  id: ID
+}
+
+input UpdatePatientInput {
+  firstName: String
+  lastName: String
+  dateOfBirth: String
+  medicalRecordNumber: String
+  department: String
+  assignedDoctor: String
+  lastVisit: String
+  securityLevel: PatientSecurityLevel
+  id: ID!
+}
+
+input DeletePatientInput {
+  id: ID!
+}
+
+type Mutation {
+  createPatient(input: CreatePatientInput!, condition: ModelPatientConditionInput): Patient @aws_iam @aws_cognito_user_pools
+  updatePatient(input: UpdatePatientInput!, condition: ModelPatientConditionInput): Patient @aws_iam @aws_cognito_user_pools
+  deletePatient(input: DeletePatientInput!, condition: ModelPatientConditionInput): Patient @aws_iam @aws_cognito_user_pools
+  createSecureOperation(input: CreateSecureOperationInput!, condition: ModelSecureOperationConditionInput): SecureOperation @aws_iam @aws_cognito_user_pools
+  updateSecureOperation(input: UpdateSecureOperationInput!, condition: ModelSecureOperationConditionInput): SecureOperation @aws_iam @aws_cognito_user_pools
+  deleteSecureOperation(input: DeleteSecureOperationInput!, condition: ModelSecureOperationConditionInput): SecureOperation @aws_iam @aws_cognito_user_pools
+  createAuditLog(input: CreateAuditLogInput!, condition: ModelAuditLogConditionInput): AuditLog @aws_iam @aws_cognito_user_pools
+  updateAuditLog(input: UpdateAuditLogInput!, condition: ModelAuditLogConditionInput): AuditLog @aws_iam @aws_cognito_user_pools
+  deleteAuditLog(input: DeleteAuditLogInput!, condition: ModelAuditLogConditionInput): AuditLog @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionPatientFilterInput {
+  firstName: ModelSubscriptionStringInput
+  lastName: ModelSubscriptionStringInput
+  dateOfBirth: ModelSubscriptionStringInput
+  medicalRecordNumber: ModelSubscriptionStringInput
+  department: ModelSubscriptionStringInput
+  assignedDoctor: ModelSubscriptionStringInput
+  lastVisit: ModelSubscriptionStringInput
+  securityLevel: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionPatientFilterInput]
+  or: [ModelSubscriptionPatientFilterInput]
+}
+
+type Subscription {
+  onCreatePatient(filter: ModelSubscriptionPatientFilterInput): Patient @aws_subscribe(mutations: ["createPatient"]) @aws_iam @aws_cognito_user_pools
+  onUpdatePatient(filter: ModelSubscriptionPatientFilterInput): Patient @aws_subscribe(mutations: ["updatePatient"]) @aws_iam @aws_cognito_user_pools
+  onDeletePatient(filter: ModelSubscriptionPatientFilterInput): Patient @aws_subscribe(mutations: ["deletePatient"]) @aws_iam @aws_cognito_user_pools
+  onCreateSecureOperation(filter: ModelSubscriptionSecureOperationFilterInput): SecureOperation @aws_subscribe(mutations: ["createSecureOperation"]) @aws_iam @aws_cognito_user_pools
+  onUpdateSecureOperation(filter: ModelSubscriptionSecureOperationFilterInput): SecureOperation @aws_subscribe(mutations: ["updateSecureOperation"]) @aws_iam @aws_cognito_user_pools
+  onDeleteSecureOperation(filter: ModelSubscriptionSecureOperationFilterInput): SecureOperation @aws_subscribe(mutations: ["deleteSecureOperation"]) @aws_iam @aws_cognito_user_pools
+  onCreateAuditLog(filter: ModelSubscriptionAuditLogFilterInput): AuditLog @aws_subscribe(mutations: ["createAuditLog"]) @aws_iam @aws_cognito_user_pools
+  onUpdateAuditLog(filter: ModelSubscriptionAuditLogFilterInput): AuditLog @aws_subscribe(mutations: ["updateAuditLog"]) @aws_iam @aws_cognito_user_pools
+  onDeleteAuditLog(filter: ModelSubscriptionAuditLogFilterInput): AuditLog @aws_subscribe(mutations: ["deleteAuditLog"]) @aws_iam @aws_cognito_user_pools
+}
+
+type ModelSecureOperationConnection @aws_iam @aws_cognito_user_pools {
+  items: [SecureOperation]!
+  nextToken: String
+}
+
+input ModelSecureOperationCategoryInput {
+  eq: SecureOperationCategory
+  ne: SecureOperationCategory
+}
+
+input ModelSecureOperationFilterInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  category: ModelSecureOperationCategoryInput
+  requiredRole: ModelStringInput
+  requiresFaceLiveness: ModelBooleanInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelSecureOperationFilterInput]
+  or: [ModelSecureOperationFilterInput]
+  not: ModelSecureOperationFilterInput
+}
+
+input ModelSecureOperationConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  category: ModelSecureOperationCategoryInput
+  requiredRole: ModelStringInput
+  requiresFaceLiveness: ModelBooleanInput
+  and: [ModelSecureOperationConditionInput]
+  or: [ModelSecureOperationConditionInput]
+  not: ModelSecureOperationConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateSecureOperationInput {
+  name: String!
+  description: String!
+  category: SecureOperationCategory
+  requiredRole: String!
+  requiresFaceLiveness: Boolean!
+  id: ID
+}
+
+input UpdateSecureOperationInput {
+  name: String
+  description: String
+  category: SecureOperationCategory
+  requiredRole: String
+  requiresFaceLiveness: Boolean
+  id: ID!
+}
+
+input DeleteSecureOperationInput {
+  id: ID!
+}
+
+input ModelSubscriptionSecureOperationFilterInput {
+  name: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  category: ModelSubscriptionStringInput
+  requiredRole: ModelSubscriptionStringInput
+  requiresFaceLiveness: ModelSubscriptionBooleanInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionSecureOperationFilterInput]
+  or: [ModelSubscriptionSecureOperationFilterInput]
+}
+
+type ModelAuditLogConnection @aws_iam @aws_cognito_user_pools {
+  items: [AuditLog]!
+  nextToken: String
+}
+
+input ModelAuditLogFilterInput {
+  userId: ModelStringInput
+  operation: ModelStringInput
+  timestamp: ModelStringInput
+  success: ModelBooleanInput
+  faceLivenessVerified: ModelBooleanInput
+  details: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelAuditLogFilterInput]
+  or: [ModelAuditLogFilterInput]
+  not: ModelAuditLogFilterInput
+}
+
+input ModelAuditLogConditionInput {
+  userId: ModelStringInput
+  operation: ModelStringInput
+  timestamp: ModelStringInput
+  success: ModelBooleanInput
+  faceLivenessVerified: ModelBooleanInput
+  details: ModelStringInput
+  and: [ModelAuditLogConditionInput]
+  or: [ModelAuditLogConditionInput]
+  not: ModelAuditLogConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateAuditLogInput {
+  userId: String!
+  operation: String!
+  timestamp: AWSDateTime!
+  success: Boolean!
+  faceLivenessVerified: Boolean
+  details: String
+  id: ID
+}
+
+input UpdateAuditLogInput {
+  userId: String
+  operation: String
+  timestamp: AWSDateTime
+  success: Boolean
+  faceLivenessVerified: Boolean
+  details: String
+  id: ID!
+}
+
+input DeleteAuditLogInput {
+  id: ID!
+}
+
+input ModelSubscriptionAuditLogFilterInput {
+  userId: ModelSubscriptionStringInput
+  operation: ModelSubscriptionStringInput
+  timestamp: ModelSubscriptionStringInput
+  success: ModelSubscriptionBooleanInput
+  faceLivenessVerified: ModelSubscriptionBooleanInput
+  details: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionAuditLogFilterInput]
+  or: [ModelSubscriptionAuditLogFilterInput]
+}

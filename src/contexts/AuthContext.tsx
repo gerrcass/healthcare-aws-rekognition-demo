@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { getCurrentUser, signIn, signOut, AuthUser, fetchUserAttributes } from 'aws-amplify/auth';
 import { User } from '../types';
-import { mockAuth, MockAuthUser } from '../services/mockAuth';
 
 interface AuthContextType {
   user: User | null;
@@ -28,28 +28,48 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const mapAuthUserToUser = (authUser: MockAuthUser): User => {
-    const attributes = authUser.attributes || {};
-    
-    return {
-      id: authUser.userId,
-      username: authUser.username,
-      email: authUser.signInDetails?.loginId || authUser.username,
-      role: (attributes['custom:role'] as 'doctor' | 'staff') || 'staff',
-      firstName: authUser.username.includes('doctor') ? 'Dr. John' : 'Jane',
-      lastName: authUser.username.includes('doctor') ? 'Smith' : 'Doe',
-      department: attributes['custom:department'],
-      licenseNumber: attributes['custom:licenseNumber'],
-      createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
-    };
+  const mapAuthUserToUser = async (authUser: AuthUser): Promise<User> => {
+    try {
+      // Fetch user attributes separately
+      const userAttributes = await fetchUserAttributes();
+      console.log('Fetched User Attributes:', userAttributes);
+      
+      const role = userAttributes['custom:role'] as 'doctor' | 'staff' || 'staff';
+      console.log('Detected role:', role);
+      
+      return {
+        id: authUser.userId,
+        username: authUser.username,
+        email: userAttributes.email || authUser.username,
+        role: role,
+        firstName: userAttributes.given_name || (role === 'doctor' ? 'Dr. John' : 'Jane'),
+        lastName: userAttributes.family_name || (role === 'doctor' ? 'Smith' : 'Doe'),
+        department: userAttributes['custom:department'],
+        licenseNumber: userAttributes['custom:licenseNumber'],
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      };
+    } catch (error) {
+      console.error('Error fetching user attributes:', error);
+      return {
+        id: authUser.userId,
+        username: authUser.username,
+        email: authUser.username,
+        role: 'staff',
+        firstName: 'Jane',
+        lastName: 'Doe',
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      };
+    }
   };
 
   useEffect(() => {
     const checkAuthState = async () => {
       try {
-        const authUser = await mockAuth.getCurrentUser();
-        setUser(mapAuthUserToUser(authUser));
+        const authUser = await getCurrentUser();
+        const mappedUser = await mapAuthUserToUser(authUser);
+        setUser(mappedUser);
       } catch (error) {
         setUser(null);
       } finally {
@@ -62,10 +82,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const handleSignIn = async (username: string, password: string) => {
     try {
-      await mockAuth.signIn({ username, password });
+      await signIn({ username, password });
       // Re-check auth state after sign in
-      const authUser = await mockAuth.getCurrentUser();
-      setUser(mapAuthUserToUser(authUser));
+      const authUser = await getCurrentUser();
+      const mappedUser = await mapAuthUserToUser(authUser);
+      setUser(mappedUser);
     } catch (error) {
       console.error('Sign in error:', error);
       throw error;
@@ -74,7 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const handleSignOut = async () => {
     try {
-      await mockAuth.signOut();
+      await signOut();
       setUser(null);
     } catch (error) {
       console.error('Sign out error:', error);

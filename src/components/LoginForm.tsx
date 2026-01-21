@@ -67,8 +67,9 @@ const LoginForm: React.FC = () => {
         
         <div className="demo-credentials">
           <h3>Demo Credentials</h3>
-          <p><strong>Doctor:</strong> doctor@example.com / password123</p>
-          <p><strong>Staff:</strong> staff@example.com / password123</p>
+          <p><strong>Doctor:</strong> doctor@example.com / Password123!</p>
+          <p><strong>Staff:</strong> staff@example.com / Password123!</p>
+          <p><em>Now using real AWS Cognito authentication!</em></p>
         </div>
       </div>
     </div>

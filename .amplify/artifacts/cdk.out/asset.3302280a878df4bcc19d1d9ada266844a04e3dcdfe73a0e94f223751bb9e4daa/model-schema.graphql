@@ -1,0 +1,42 @@
+type Patient @model @auth(rules: [{allow: private}])
+{
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  medicalRecordNumber: String!
+  department: String!
+  assignedDoctor: String
+  lastVisit: String!
+  securityLevel: PatientSecurityLevel
+}
+
+type SecureOperation @model @auth(rules: [{allow: private}])
+{
+  name: String!
+  description: String!
+  category: SecureOperationCategory
+  requiredRole: String!
+  requiresFaceLiveness: Boolean!
+}
+
+type AuditLog @model @auth(rules: [{allow: private}])
+{
+  userId: String!
+  operation: String!
+  timestamp: AWSDateTime!
+  success: Boolean!
+  faceLivenessVerified: Boolean
+  details: String
+}
+
+enum PatientSecurityLevel {
+  standard
+  sensitive
+}
+
+enum SecureOperationCategory {
+  prescription
+  diagnosis
+  procedure
+  records
+}
