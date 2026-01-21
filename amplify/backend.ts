@@ -1,0 +1,10 @@
+import { defineBackend } from '@aws-amplify/backend';
+import { auth } from './auth/resource';
+import { data } from './data/resource';
+import { faceLivenessFunction } from './functions/face-liveness/resource';
+
+export const backend = defineBackend({
+  auth,
+  data,
+  faceLivenessFunction,
+});

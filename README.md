@@ -1,46 +1,193 @@
-# Getting Started with Create React App
+# Healthcare FaceLiveness Demo Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based healthcare Electronic Health Records (EHR) demo application showcasing Amazon Rekognition FaceLiveness technology with role-based access control.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Two-tier Authentication System**
+  - Standard AWS Cognito authentication for all users
+  - Additional facial verification for doctor users accessing secure operations
 
-### `npm start`
+- **Role-based Access Control**
+  - **Staff Users**: Standard dashboard access without facial verification
+  - **Doctor Users**: Enhanced access including secure operations requiring facial verification
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Healthcare-focused Interface**
+  - Patient information management
+  - Secure operations for sensitive medical procedures
+  - Audit logging for compliance
+  - Healthcare-appropriate styling and UX
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Demo Credentials
 
-### `npm test`
+- **Doctor**: `doctor@example.com` / `password123`
+- **Staff**: `staff@example.com` / `password123`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Architecture
 
-### `npm run build`
+- **Frontend**: React with TypeScript
+- **Authentication**: AWS Cognito (mocked for demo)
+- **Facial Verification**: Amazon Rekognition FaceLiveness (mocked for demo)
+- **Backend**: AWS Amplify with Lambda functions
+- **Database**: AWS AppSync with DynamoDB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js 18+ (Note: Some AWS SDK packages require Node 20+, but the demo works with 18)
+- npm or yarn
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd healthcare-faceliveness-demo
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### For Staff Users
+1. Log in with staff credentials
+2. Access standard healthcare operations:
+   - View patient records
+   - Schedule appointments
+   - Update patient information
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### For Doctor Users
+1. Log in with doctor credentials
+2. Access all standard operations plus secure operations:
+   - Prescribe controlled medications
+   - Update critical diagnoses
+   - Authorize surgical procedures
+   - Access sensitive medical records
+
+3. When attempting secure operations:
+   - Facial verification modal will appear
+   - Click "Start Verification" to begin the process
+   - **Allow camera access** when prompted by your browser
+   - Position your face within the oval guide
+   - The system will automatically complete verification steps
+   - Operation will be authorized upon successful verification
+
+## Testing
+
+The application includes both unit tests and property-based tests:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run property-based tests specifically
+npm test -- --testNamePattern="Property"
+```
+
+### Property-Based Testing
+
+The application uses `fast-check` for property-based testing to validate correctness properties:
+
+- **Property 5**: Staff users have standard access without facial verification
+- **Property 6**: Doctor users have enhanced access including secure operations
+- **Property 7**: Staff users are blocked from secure operations
+- **Property 8**: Role-based operation validation works correctly
+
+## Security Features
+
+- **Session Management**: Automatic session timeout and renewal
+- **Audit Logging**: All security events are logged for compliance
+- **Access Control**: Fine-grained permissions based on user roles
+- **Facial Verification**: Additional security layer for sensitive operations
+- **Data Encryption**: All communications use HTTPS
+
+## Compliance
+
+The application is designed with healthcare compliance in mind:
+
+- HIPAA-compliant error messages
+- Audit trails for sensitive operations
+- Role-based access to patient data
+- Secure session management
+
+## Development
+
+### Project Structure
+
+```
+src/
+├── components/          # React components
+├── contexts/           # React contexts (Auth)
+├── data/              # Mock data
+├── services/          # API services
+├── types/             # TypeScript type definitions
+├── utils/             # Utility functions
+└── __tests__/         # Test files
+```
+
+### Key Components
+
+- **AuthProvider**: Manages authentication state and user sessions
+- **Dashboard**: Main application interface with role-based features
+- **FaceLivenessModal**: Handles facial verification workflow
+- **SecureOperationWrapper**: Enforces access control for sensitive operations
+
+### Mock Services
+
+For demo purposes, the application uses mock services:
+
+- **mockAuth.ts**: Simulates AWS Cognito authentication
+- **FaceLivenessModal**: Simulates Amazon Rekognition FaceLiveness
+
+## Deployment
+
+### AWS Amplify Deployment
+
+1. Initialize Amplify backend:
+   ```bash
+   npx ampx sandbox
+   ```
+
+2. Deploy to AWS:
+   ```bash
+   npx ampx pipeline-deploy --branch main
+   ```
+
+### Environment Variables
+
+Configure the following environment variables for production:
+
+- `REACT_APP_AWS_REGION`: AWS region for services
+- `REACT_APP_USER_POOL_ID`: Cognito User Pool ID
+- `REACT_APP_USER_POOL_CLIENT_ID`: Cognito User Pool Client ID
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For questions or issues, please contact the development team or create an issue in the repository.
