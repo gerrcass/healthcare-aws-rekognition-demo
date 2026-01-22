@@ -90,7 +90,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "53b1062e81fc845b7bbe5e4596daf6383e2eabfd235282ac085098446c2008ae.zip"
+     "S3Key": "ad27dcd8f7fb22f72c172f509c9c2dddf6f81aea19724c0d384edb502d82c231.zip"
     },
     "Environment": {
      "Variables": {
@@ -133,7 +133,7 @@
    "DeletionPolicy": "Delete",
    "Metadata": {
     "aws:cdk:path": "amplify-healthcarefacelivenessdemo-gerrcass-sandbox-0a187a0cfd/function/face-liveness-lambda/Resource",
-    "aws:asset:path": "asset.53b1062e81fc845b7bbe5e4596daf6383e2eabfd235282ac085098446c2008ae",
+    "aws:asset:path": "asset.ad27dcd8f7fb22f72c172f509c9c2dddf6f81aea19724c0d384edb502d82c231",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

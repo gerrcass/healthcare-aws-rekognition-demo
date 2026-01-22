@@ -25,14 +25,16 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [verificationStep, setVerificationStep] = useState(0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
   const createLivenessSession = useCallback(async () => {
     setIsLoading(true);
     try {
-      // Try to get API URL from outputs, fallback to direct Lambda invocation
-      const apiUrl = outputs.custom?.faceLivenessApiUrl;
+      Try to get API URL from outputs, fallback to direct Lambda invocation
+      // const apiUrl = outputs.custom?.faceLivenessApiUrl;
+      const apiUrl = null;
       
       if (apiUrl) {
         const response = await fetch(apiUrl, {
@@ -44,7 +46,16 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          let errText = `HTTP error! status: ${response.status}`;
+          try {
+            const errJson = await response.json();
+            errText = errJson.error || errJson.details || errText;
+          } catch (e) {
+            // ignore
+          }
+          setErrorMessage(errText);
+          onError();
+          return;
         }
 
         const data = await response.json();
@@ -58,6 +69,7 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
       setShowCamera(true);
     } catch (error) {
       console.error('Failed to create liveness session:', error);
+      setErrorMessage((error as Error)?.message || 'Failed to create session');
       onError();
     } finally {
       setIsLoading(false);
@@ -66,7 +78,8 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
 
   const getSessionResults = useCallback(async (sessionId: string) => {
     try {
-      const apiUrl = outputs.custom?.faceLivenessApiUrl;
+      // const apiUrl = outputs.custom?.faceLivenessApiUrl;
+      const apiUrl = null;
       
       if (apiUrl) {
         const response = await fetch(apiUrl, {
@@ -81,14 +94,25 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          let errText = `HTTP error! status: ${response.status}`;
+          try {
+            const errJson = await response.json();
+            errText = errJson.error || errJson.details || errText;
+          } catch (e) {
+            // ignore
+          }
+          setErrorMessage(errText);
+          onError();
+          return;
         }
 
         const data = await response.json();
-        
+
         if (data.status === 'SUCCEEDED' && data.confidence > 80) {
           onSuccess();
         } else {
+          const msg = data.message || data.detail || 'Verification failed';
+          setErrorMessage(msg);
           onError();
         }
       } else {
@@ -97,35 +121,10 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
       }
     } catch (error) {
       console.error('Failed to get session results:', error);
-      // Fallback: simulate success for demo
-      onSuccess();
-    }
-  }, [onSuccess, onError]);
-
-  const startCamera = useCallback(async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
-          width: { ideal: 400 },
-          height: { ideal: 300 },
-          facingMode: 'user'
-        } 
-      });
-      
-      streamRef.current = stream;
-      
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      }
-      
-      startVerificationProcess();
-      
-    } catch (error) {
-      console.error('Camera access error:', error);
+      setErrorMessage((error as Error)?.message || 'Failed to get session results');
       onError();
     }
-  }, []);
+  }, [onSuccess, onError]);
 
   const startVerificationProcess = useCallback(() => {
     const steps = [
@@ -152,6 +151,31 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
     });
   }, [sessionId, getSessionResults]);
 
+  const startCamera = useCallback(async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { 
+          width: { ideal: 400 },
+          height: { ideal: 300 },
+          facingMode: 'user'
+        } 
+      });
+      
+      streamRef.current = stream;
+      
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+      }
+      
+      startVerificationProcess();
+      
+    } catch (error) {
+      console.error('Camera access error:', error);
+      onError();
+    }
+  }, [startVerificationProcess, onError]);
+
   const handleStartVerification = useCallback(async () => {
     await createLivenessSession();
   }, [createLivenessSession]);
@@ -168,6 +192,13 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
         streamRef.current.getTracks().forEach(track => track.stop());
       }
     };
+  }, []);
+
+  const handleRetry = useCallback(() => {
+    setErrorMessage(null);
+    setSessionId('');
+    setShowCamera(false);
+    setVerificationStep(0);
   }, []);
 
   if (!isOpen) return null;
@@ -202,6 +233,16 @@ const FaceLivenessModal: React.FC<FaceLivenessModalProps> = ({
             <div className="loading-state">
               <div className="spinner"></div>
               <p>Initializing facial verification...</p>
+            </div>
+          )}
+
+          {errorMessage && (
+            <div className="error-state">
+              <p><strong>Verification error:</strong> {errorMessage}</p>
+              <div className="error-actions">
+                <button onClick={handleRetry} className="start-button">Retry</button>
+                <button onClick={onClose} className="start-button">Close</button>
+              </div>
             </div>
           )}
 

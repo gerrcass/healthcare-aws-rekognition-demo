@@ -23,7 +23,11 @@ export const handler = async (event) => {
     // Import AWS SDK dynamically
     const { RekognitionClient, CreateFaceLivenessSessionCommand, GetFaceLivenessSessionResultsCommand } = await import('@aws-sdk/client-rekognition');
     
-    const rekognition = new RekognitionClient({ region: process.env.AWS_REGION || 'us-east-2' });
+    // Use explicit Rekognition region. In some orgs Control Tower SCPs block Rekognition
+    // operations outside the primary region. Allow overriding via REKOGNITION_REGION env var.
+    const rekognitionRegion = process.env.REKOGNITION_REGION || process.env.AWS_REGION || 'us-east-1';
+    console.log('Using Rekognition region:', rekognitionRegion);
+    const rekognition = new RekognitionClient({ region: rekognitionRegion });
 
     switch (action) {
       case 'createSession':
@@ -60,7 +64,12 @@ export const handler = async (event) => {
         };
     }
   } catch (error) {
-    console.error('FaceLiveness error:', error);
+    console.error('FaceLiveness error:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      metadata: error.$metadata || null,
+    });
     return {
       statusCode: 500,
       headers,

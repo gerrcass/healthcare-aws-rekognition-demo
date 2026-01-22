@@ -365,5 +365,8 @@
       "nonModels": {}
     }
   },
-  "version": "1.4"
+  "version": "1.4",
+  "custom": {
+    "faceLivenessApiUrl": "https://e3c2jr6gzcgwpo3e3htzfklhe40gyejt.lambda-url.us-east-2.on.aws/"
+  }
 }
